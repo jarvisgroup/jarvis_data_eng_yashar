@@ -19,6 +19,7 @@ case $switch in
 	stop)
 		#stop docker
 		sudo docker stop jrvs-psql
+		sudo systemctl stop docker
 		;;
 	#default case
 	*)
