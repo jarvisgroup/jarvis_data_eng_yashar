@@ -8,7 +8,7 @@ psql_user=$4
 psql_passward=$5
 
 #validate the arugement
-if [ "$#" -ne 5]; then
+if [ "$#" -ne 5 ]; then
 	echo "Invalid Arguments" 
 	exit 1
 fi
