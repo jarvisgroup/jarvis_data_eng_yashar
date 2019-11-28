@@ -1,11 +1,11 @@
 /*CREATE DATABASE host_agent */
 
-CREATE DATABASE host_agent
+CREATE DATABASE host_agent;
 
 
 
 /* switch to host_agent db
-\c host_agent
+\c host_agent;
 
 
 /* create table to store hardware specifications */
