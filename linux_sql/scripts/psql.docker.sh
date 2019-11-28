@@ -1,30 +1,22 @@
 #!/bin/bash
-
+#set up arguments
 switch=$1 
 password=$2 
 
-case $switch in
-	start)
-		#start docker
-		sudo systemctl status docker || sudo systemctl start docker
-		#get psql docker image
-		sudo docker pull postgres
-		#set password for default user
-		export PGPASSWORD=$password
+if [ "$#" -eq 2 ] && [ $switch  = "start" ]
+then
 		#run psql, auto remove existing container and assign a name
-		sudo docker run --rm --name jrvs-psql -e Psql_PASSWORD=$PGPASSWORD -d -v pgdata:/var/lib/postgresql/data -p 5432:5432 postgres
-		#check status 
-		sudo docker ps
-		;;
-	stop)
-		#stop docker
-		sudo docker stop jrvs-psql
-		sudo systemctl stop docker
-		;;
-	#default case
-	*)
+		sudo docker run --rm --name jrvs-psql -e Psql_PASSWORD=$password -d -v pgdata:/var/lib/postgresql/data -p 5432:5432 postgres
+		echo "Docker psql container started"
+elif [ "$#" -eq 1 ] && [ $switch  = "stop" ]
+then
+		#stop sql container
+		sudo docker container stop 'jrcs_psql'
+		echo "Docker psql container stopped"
+else
 		echo "ERROR! PLEASE USE: $0 (start|stop) FORMAT"
-esac
+		exit 1
+fi
 #log out session
 exit 0
 		
