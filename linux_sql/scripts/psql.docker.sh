@@ -11,10 +11,10 @@ then
 elif [ "$#" -eq 1 ] && [ $switch  = "stop" ]
 then
 		#stop sql container
-		sudo docker container stop 'jrcs_psql'
+		sudo docker container stop 'jrvs-psql'
 		echo "Docker psql container stopped"
 else
-		echo "ERROR! PLEASE USE: $0 (start|stop) FORMAT"
+		echo "ERROR! PLEASE USE: $0 (start dbpassword|stop) FORMAT"
 		exit 1
 fi
 #log out session
