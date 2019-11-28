@@ -6,7 +6,7 @@ Cluster Monitor Agent is an internal tool that monitors the clsuter resources, t
 usage for each node will be collected and stored in a RDBMS database for further analyze.
 
 ## Architecture 
-![Architecture](/assets/Architecture.drawio)
+![Architecture](/assets/Demo.png)
 
 ## Usage 
 
