@@ -26,10 +26,10 @@ timestamp=$(date '+%Y-%m-%d %H:%M:%S')
 #insert data using psql cli
 psql -h $psql_host -p $psql_port -d $db_name -U $psql_user -W $psql_password <<EOF
 INSERT INTO host_info (
-hostname,cpu_number,cpu_architecture,cpu_model,cpu_mhz,L2_cache,total_mem,
+host_name,cpu_number,cpu_architecture,cpu_model,cpu_mhz,L2_cache,total_mem,
 timestamp)
 VALUES ('$hostname','$cpu_number','$cpu_architecture','$cpu_model','$cpu_mhz',
-'$L2_cache','total_mem','$timestamp');
+'$L2_cache','$total_mem','$timestamp');
 EOF
 
 echo "Successfully inserted data into host_info table"

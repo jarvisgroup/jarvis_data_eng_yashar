@@ -14,21 +14,23 @@ if [ "$#" -ne 5 ]; then
 fi
 
 #parse server CPU and memory usage data
-vmstat_unit=`vmstat --unit M`
-vmstat_disk=`vmstat -d`
-memory_free=$("$vmstat_unit" | grep -E --invert-match "procs|r" | awk '{print $4}' | xargs)
-cpu_idel=$("$vmstat_unit" | grep -E --invert-match "procs|r" | awk '{print $15}' | xargs)
-cpu_kernel=$("$vmstat_unit" | grep -E --invert-match "procs|r" | awk '{print $14}' | xargs)
-disk_io=$("vmstat_disk" | grep -E --invert-match "disk|*total" | awk '{print $10}' | xargs) 
-disk_available=$(df - BM / | grep -E --invert-match "Filesystem" | awk -F '[ M]*' '{print $4}' | xargs)
+vmstat_unit=$(vmstat -S M | tail -1)
+disk_stat=$(vmstat -d)
+host_name=$(hostname -f)
+memory_free=$(echo "$vmstat_unit" | awk '{print $4}')
+cpu_idel=$(echo "$vmstat_unit" | awk '{print $15}')
+cpu_kernel=$(echo "$vmstat_unit" | awk '{print $14}')
+disk_io=$(echo "$disk_stat" | awk '{print $9, $10}') 
+disk_available=$(df -BM | grep -E 'sda1' | awk -F '[ M]*' '{print $4}' | xargs)
 timestamp=$(date '+%Y-%m-%d %H:%M:%S')
 
 #insert data
-psql -h $psql_host -p $psql_port -d $db_name -U $psql_user -W $psql_password << EOF
-INSERT INTO host_usage VALUES (
-	(SELECT id FROM host_info WHERE hostname = '$hostname'),
-	'$memory_free", '$cpu_idel','$cpu_kernel','$disk_io','$disk_available',
-	'$timestamp'
+psql -h $psql_host -p $psql_port -d $db_name -U $psql_user  << EOF
+INSERT INTO host_usage ("timestamp", host_id, memory_free, cpu_idel, cpu_kernel, disk_io, disk_available)  
+VALUES ('$timestamp',
+	(SELECT id FROM host_info WHERE host_name='$host_name'),
+	'$memory_free','$cpu_idel',
+	'$cpu_kernel','$disk_io','$disk_available'
 );
 EOF
 
