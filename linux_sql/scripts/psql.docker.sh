@@ -16,12 +16,12 @@ then
 			sudo docker volume create pgdata
 		fi
 		#check if psql container is created
-		if [ -z "$(sudo docker container ps -q -f name=$container_name)" ]; then 
+		if [ -z "$(sudo docker container ps -a -q -f name=$container_name)" ]; then 
 			#run psql container, if not created
 			sudo docker run --rm --name jrvs-psql -e POSTGRES_PASSWORD=$PGPASSWORD -d -v pgdata:/var/lib/postgresql/data -p 5432:5432 postgres
 			echo "psql container has created and is running"
 		#check if psql container is running
-		elif [ -z "$(sudo docker container ls -q -a -f name=$container_name)" ]; then
+		elif [ -z "$(sudo docker container ls -q -f name=$container_name)" ]; then
 			sudo docker container start jrvs-psql
 			echo "psql container starts running"
 		else
