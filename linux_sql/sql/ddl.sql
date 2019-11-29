@@ -2,11 +2,8 @@
 
 CREATE DATABASE host_agent;
 
-
-
 /* switch to host_agent db
 \c host_agent;
-
 
 /* create table to store hardware specifications */
 CREATE TABLE IF NOT EXISTS public.host_info(
@@ -17,12 +14,12 @@ CREATE TABLE IF NOT EXISTS public.host_info(
 	cpu_model VARCHAR NOT NULL,
 	cpu_mhz DECIMAL NOT NULL,
 	L2_cache(kB) VARCHAR NOT NULL,
-	timestamp TIMESTAMP timezone('UTC',now())
+	timestamp TIMESTAMP NOT NULL
 );
 
 /* CREATE TABLE to resource usage data */
 CREATE TABLE IF NOT EXISTS public.host_usage(
-	'timestamp' TIMESTAMP timezone('UTC', now()) NOT NULL,
+	'timestamp' TIMESTAMP NOT NULL,
 	host_id SERIAL NOT NULL REFERENCES public.host_info(id),
 	memory_free(MB) INTEGER NOT NULL ,
 	cpu_idel(%) INTEGER NOT NULL,
