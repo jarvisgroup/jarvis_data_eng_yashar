@@ -25,8 +25,8 @@ CREATE TABLE IF NOT EXISTS public.host_usage(
 	memory_free INTEGER NOT NULL ,
 	cpu_idel INTEGER NOT NULL,
 	cpu_kernel INTEGER NOT NULL,
-	disk_id INTEGER NOT NULL,
-	disk_avaiable INTEGER NOT NULL
+	disk_io INTEGER NOT NULL,
+	disk_available INTEGER NOT NULL
 );
 
 
