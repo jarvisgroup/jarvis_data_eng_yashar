@@ -7,7 +7,7 @@ ORDER BY
 	totak_mem DESC;
 
 
--- Q2 
+-- Q2 record average used memory in percentage over 5 mins interval 
 SELECT host_usage.host_id AS host_id,
 	host_info.host_name AS host_name,
 	host_info.total_mem AS total_memory,
