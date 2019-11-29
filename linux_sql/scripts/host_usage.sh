@@ -16,7 +16,6 @@ fi
 #parse server CPU and memory usage data
 vmstat_unit=$(vmstat -S M | tail -1)
 disk_stat=$(vmstat -d)
-host_name=$(hostname -f)
 memory_free=$(echo "$vmstat_unit" | awk '{print $4}')
 cpu_idel=$(echo "$vmstat_unit" | awk '{print $15}')
 cpu_kernel=$(echo "$vmstat_unit" | awk '{print $14}')
@@ -28,7 +27,7 @@ timestamp=$(date '+%Y-%m-%d %H:%M:%S')
 psql -h $psql_host -p $psql_port -d $db_name -U $psql_user  << EOF
 INSERT INTO host_usage ("timestamp", host_id, memory_free, cpu_idel, cpu_kernel, disk_io, disk_available)  
 VALUES ('$timestamp',
-	(SELECT id FROM host_info WHERE host_name='$host_name'),
+	(SELECT id FROM host_info WHERE host_name='$hostname'),
 	'$memory_free','$cpu_idel',
 	'$cpu_kernel','$disk_io','$disk_available'
 );
