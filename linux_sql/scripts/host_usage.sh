@@ -15,11 +15,12 @@ fi
 
 #parse server CPU and memory usage data
 vmstat_unit=$(vmstat -S M | tail -1)
-disk_stat=$(vmstat -d)
 memory_free=$(echo "$vmstat_unit" | awk '{print $4}')
 cpu_idel=$(echo "$vmstat_unit" | awk '{print $15}')
 cpu_kernel=$(echo "$vmstat_unit" | awk '{print $14}')
-disk_io=$(echo "$disk_stat" | awk '{print $9, $10}') 
+disk_i=$(echo "$vmstat_unit" | awk '{print $9}')
+disk_o=$(echo "$vmstat_unit" | awk '{print $10}')
+disk_io=$(($disk_i + $disk_o))
 disk_available=$(df -BM | grep -E 'sda1' | awk -F '[ M]*' '{print $4}' | xargs)
 timestamp=$(date '+%Y-%m-%d %H:%M:%S')
 
