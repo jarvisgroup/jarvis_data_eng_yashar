@@ -7,6 +7,8 @@ db_name=$3
 psql_user=$4
 psql_passward=$5
 
+#sets environment variable
+export PGPASSWORD="$password"
 #validate the arugement
 if [ "$#" -ne 5 ]; then
 	echo "Invalid Arguments" 
@@ -24,7 +26,7 @@ total_mem=$(cat /proc/meminfo | grep "^MemTotal" | awk '{print $2}')
 timestamp=$(date '+%Y-%m-%d %H:%M:%S')
 
 #insert data using psql cli
-psql -h $psql_host -p $psql_port -d $db_name -U $psql_user -W $psql_password <<EOF
+psql -h $psql_host -p $psql_port -d $db_name -U $psql_user <<EOF
 INSERT INTO host_info (
 host_name,cpu_number,cpu_architecture,cpu_model,cpu_mhz,L2_cache,total_mem,
 timestamp)

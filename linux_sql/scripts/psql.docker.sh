@@ -11,10 +11,6 @@ docker_deamon=$(sudo systemctl status docker || sudo systemctl start docker)
 
 if [ "$#" -eq 2 ] && [ $switch  = "start" ]
 then
-		#check if pgdata volume is created
-		if [ -z $(sudo docker volume ls -q -f name=pgdata) ]; then
-			sudo docker volume create pgdata
-		fi
 		#check if psql container is created
 		if [ -z "$(sudo docker container ps -a -q -f name=$container_name)" ]; then 
 			#run psql container, if not created

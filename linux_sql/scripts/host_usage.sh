@@ -7,6 +7,9 @@ db_name=$3
 psql_user=$4
 psql_password=$5
 hostname=$(hostname -f)
+
+#set environment variable
+export PGPASSWORD="$password"
 #validate argument
 if [ "$#" -ne 5 ]; then
 	echo "Invalid arguement, please type in psql_host psql_port db_name psql_user psql_password"
