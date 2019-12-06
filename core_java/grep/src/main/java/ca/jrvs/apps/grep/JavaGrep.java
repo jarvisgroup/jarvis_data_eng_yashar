@@ -2,7 +2,6 @@ package ca.jrvs.apps.grep;
 
 import java.io.File;
 import java.io.IOException;
-import java.io.util.List;
 import java.util.List;
 
 public interface JavaGrep {
@@ -19,7 +18,7 @@ public interface JavaGrep {
     List<File> listFiles(String rootDir);
 
     /*
-     * read a line and return all the lines
+     * read a file and return all the lines
      * explain FileReader, BufferReader, and char encoding
      * @param inoutFile file to be read
      * @return lines
@@ -35,7 +34,7 @@ public interface JavaGrep {
     boolean containsPattern(String line);
 
     /*
-     *Write lines to a file
+     * Write lines to a file
      * Explore: FileOutputStream, OutputStreamWriter, and BufferedWriter
      * @param lines matches line
      * throws IOException if write failed
