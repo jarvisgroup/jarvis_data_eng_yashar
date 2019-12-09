@@ -21,7 +21,8 @@ Simple Example:
 
 
 ## Pseudocode 
-`process` method is for high level workflow purpose.
+`process` method is for high level workflow purpose. It allows developer to have a general scope of the implementation,
+and calls helper functions which contains detailed implementation.
 ```
 matchedline [] 
 for file in listfile(rootDir)
@@ -40,5 +41,5 @@ the memory which will cause a memory problem.
 framework to achieve this. 
 2. Detailed Output File : Currently, only the matched_lines are being stored into the output file, the path to that matched_line
 should be printed along with the line itself to improve the readability.
-3. Time Constrain : There should be a time constrain when the app is searching through the directory, for example, if the time that searching through a file is
+3. Time Constraint : There should be a time constraint when the app is searching through the directory, for example, if the time that searching through a file is
 relatively longer that searching other file, the program should abort the file and move on to the next one. Longer search time means the file is too large. 
