@@ -1,6 +1,8 @@
 package ca.jrvs.apps.twitter.dao;
 
 import ca.jrvs.apps.twitter.dao.model.Tweet;
+import ca.jrvs.apps.twitter.util.JsonUtil;
+import ca.jrvs.apps.twitter.util.TweetUtil;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -40,7 +42,8 @@ public class TwitterDaoIntTest {
         assertEquals(lon,tweet.getCoordinates().getCoordinates().get(0));
         assertEquals(lat,tweet.getCoordinates().getCoordinates().get(1));
 
-        assertTrue(hashTag.contains(tweet.getEntities().getHashtags().get(0).getText()));
+        assertTrue(hashTag.contains(tweet.getEntities().getHashtags().getText()));
+
 
 
     }
