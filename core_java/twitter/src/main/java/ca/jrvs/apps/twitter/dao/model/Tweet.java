@@ -25,7 +25,7 @@ public class Tweet {
     @JsonProperty("create_at")
     private  String create_at;
     @JsonProperty("id")
-    private  int id;
+    private  long id;
     @JsonProperty("id_str")
     private  String id_str;
     @JsonProperty("text")
@@ -57,7 +57,7 @@ public class Tweet {
     }
 
     @JsonProperty("id")
-    public int getId() {
+    public long getId() {
         return id;
     }
     @JsonProperty("id")

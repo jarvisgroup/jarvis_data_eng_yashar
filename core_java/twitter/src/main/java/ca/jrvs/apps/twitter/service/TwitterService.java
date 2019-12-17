@@ -3,6 +3,7 @@ package ca.jrvs.apps.twitter.service;
 import ca.jrvs.apps.twitter.dao.CrdDao;
 import ca.jrvs.apps.twitter.dao.model.Tweet;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class TwitterService implements Service {
@@ -13,7 +14,7 @@ public class TwitterService implements Service {
         this.dao = dao;
     }
 
-    /*
+    /**
      * validate and post tweet
      * @pre-condition text <= 140 char
      * and lon/lat is not out of range
@@ -34,14 +35,44 @@ public class TwitterService implements Service {
         return (Tweet) dao.create(tweet);
     }
 
+    /**
+     * Search a tweet by ID
+     *
+     * @param id tweet id
+     * @param fields set fields not in the list to null
+     * @return Tweet object which is returned by the Twitter API
+     *
+     * @throws IllegalArgumentException if id or fields param is invalid
+     */
     @Override
     public Tweet showTweet(String id, String[] fields) {
+        //pre-condition, check if id in correct format
+        if(!id.matches("[0-9]+")){
+            throw new IllegalArgumentException("ID is not in correct format");
+        }
 
-        return null;
+        return (Tweet) dao.findById(id);
+
     }
 
+    /**
+     * Delete Tweet(s) by id(s).
+     *
+     * @param ids tweet IDs which will be deleted
+     * @return A list of Tweets
+     *
+     * @throws IllegalArgumentException if one of the IDs is invalid.
+     */
     @Override
     public List<Tweet> deleteTweets(String[] ids) {
-        return null;
+        List<Tweet> deletedTweet = new ArrayList<Tweet>();
+        for(String id : ids){
+            if(!id.matches("[0-9]+")){
+                throw new IllegalArgumentException("ID is not in correct format");
+            }else{
+                deletedTweet.add((Tweet) dao.deleteById(id));
+            }
+        }
+        return deletedTweet;
     }
 }
