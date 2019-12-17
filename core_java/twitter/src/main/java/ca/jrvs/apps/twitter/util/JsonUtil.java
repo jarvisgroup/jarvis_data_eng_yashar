@@ -9,14 +9,15 @@ import com.fasterxml.jackson.databind.SerializationFeature;
 import java.io.IOException;
 
 public class JsonUtil {
-    public static boolean toPrettyJson(Tweet postTweet) {
-        return true;
-    }
+//    public static boolean toPrettyJson(Tweet postTweet) {
+//        return true;
+//    }
 
     public static <T> T toObjectFromJson(String json, Class clazz) throws IOException{
         ObjectMapper m = new ObjectMapper();
         return (T) m.readValue(json,clazz);
     }
+
 
     public static String toPrettyJson(Object object, boolean prettyJson, boolean includeNullValues) throws JsonProcessingException {
         ObjectMapper m = new ObjectMapper();

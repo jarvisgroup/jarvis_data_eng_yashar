@@ -2,10 +2,12 @@ package ca.jrvs.apps.twitter.dao.model;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 
+import java.util.List;
+
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class UserMention {
     private String name;
-    private int[] indices;
+    private List<Integer> indices;
     private String screen_name;
     private int id;
     private String id_str;
@@ -18,11 +20,11 @@ public class UserMention {
         this.name = name;
     }
 
-    public int[] getIndices() {
+    public List<Integer> getIndices() {
         return indices;
     }
 
-    public void setIndices(int[] indices) {
+    public void setIndices(List<Integer> indices) {
         this.indices = indices;
     }
 

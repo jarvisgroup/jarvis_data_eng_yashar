@@ -25,7 +25,7 @@ public class TwitterDao implements CrdDao<Tweet, String>{
     private static final String SHOW_PATH = "/1.1/statuses/show.json";
     private static final String DELETE_PATH = "/1.1/statuses/destroy";
     //URI symbols
-    private static final String QUERy_SYM = "?";
+    private static final String QUERY_SYM = "?";
     private static final String AMPERSAND = "&";
     private static final String EQUAL = "=";
 
@@ -42,7 +42,7 @@ public class TwitterDao implements CrdDao<Tweet, String>{
         URI uri;
         try{
             uri = getPostUri(tweet);
-        }catch (URISyntaxException | UnsupportedEncodingException e){
+        }catch (URISyntaxException e){
             throw new IllegalArgumentException("Invalid tweet input", e);
         }
         // execute Http request
@@ -51,20 +51,58 @@ public class TwitterDao implements CrdDao<Tweet, String>{
         return parseResponseBody(response,HTTP_OK);
 
     }
-    // helper function to get the POST uri
-    private URI getPostUri(Tweet tweet) throws URISyntaxException,UnsupportedEncodingException {
-        URI uri = new URI(API_BASE_URI + POST_PATH + tweet.getId());
-        return uri;
-    }
 
     @Override
     public Tweet findById(String s) {
-        return null;
+        URI uri;
+        try{
+            uri = getShowUri(s);
+        }catch (URISyntaxException e){
+            throw new IllegalArgumentException("Invalid id", e);
+        }
+        // execute Http request
+        HttpResponse response = httpHelper.httpPost(uri);
+        // validate response and parse response to Tweet object
+        return parseResponseBody(response,HTTP_OK);
+
     }
 
     @Override
     public Tweet deleteById(String s) {
-        return null;
+        URI uri;
+        try{
+            uri = getDeleteUri(s);
+        }catch (URISyntaxException e){
+            throw new IllegalArgumentException("Invalid id", e);
+        }
+        // execute Http request
+        HttpResponse response = httpHelper.httpPost(uri);
+        // validate response and parse response to Tweet object
+        return parseResponseBody(response,HTTP_OK);
+
+    }
+    // helper method to get the uri for DELETE
+    private URI getDeleteUri(String s) throws URISyntaxException{
+        URI uri = new URI(API_BASE_URI + DELETE_PATH + "/" + s + ".json");
+        return uri;
+    }
+
+    //helper method to get the uri for show
+    private URI getShowUri(String s) throws URISyntaxException {
+        URI uri = new URI(API_BASE_URI + SHOW_PATH + QUERY_SYM + AMPERSAND
+                     + "id" + EQUAL + s);
+        return uri;
+    }
+
+    // helper function to get the POST uri
+    private URI getPostUri(Tweet tweet) throws URISyntaxException {
+        String text = tweet.getText();
+        double lon = tweet.getCoordinates().getCoordinates().get(0);
+        double lat = tweet.getCoordinates().getCoordinates().get(1);
+        URI uri = new URI(API_BASE_URI + POST_PATH + QUERY_SYM + AMPERSAND +
+                    "status" + EQUAL + text + "long" + EQUAL + lon + "lat" +
+                    EQUAL + lat);
+        return uri;
     }
 
 

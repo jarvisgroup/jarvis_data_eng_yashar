@@ -2,16 +2,18 @@ package ca.jrvs.apps.twitter.dao.model;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 
+import java.util.List;
+
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class Coordinates {
-    private double[] coordinates;
+    private List<Double> coordinates;
     private String type;
 
-    public double[] getCoordinates() {
+    public List<Double> getCoordinates() {
         return coordinates;
     }
 
-    public void setCoordinates(double[] coordinates) {
+    public void setCoordinates(List<Double> coordinates) {
         this.coordinates = coordinates;
     }
 
@@ -23,14 +25,5 @@ public class Coordinates {
         this.type = type;
     }
 
-    public int size(){
-        return coordinates.length;
-    }
-
-    // get the longitude or latitude
-    public double get(int type){
-        return coordinates[type];
-
-    }
 
 }

@@ -7,44 +7,52 @@ import org.junit.Before;
 import org.junit.Test;
 
 import static junit.framework.TestCase.assertTrue;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.*;
 
-public class TwitterDaoIntTest {
+public class TwitterDaoTest {
     private TwitterDao dao;
 
     @Before
-    public void setup(){
+    public void setup() {
         String consumerKey = System.getenv("consumerKey");
         String consumerSecret = System.getenv("consumerSecret");
         String accessToken = System.getenv("accessToken");
         String tokenSecret = System.getenv("tokenSecret");
-        System.out.println(consumerKey +"|" + consumerSecret + "|" + accessToken + "|" + tokenSecret);
+        System.out.println(consumerKey + "|" + consumerSecret + "|" + accessToken + "|" + tokenSecret);
         //setup dependency
-        HttpHelper httpHelper = new TwitterHttpHelper(consumerKey,consumerSecret,accessToken,tokenSecret);
+        HttpHelper httpHelper = new TwitterHttpHelper(consumerKey, consumerSecret, accessToken, tokenSecret);
         // pass dependency
         this.dao = new TwitterDao(httpHelper);
     }
 
     @Test
-    public void create() throws Exception{
+    public void create() throws Exception {
         String hashTag = "#abc";
         String text = "@someone sometext" + hashTag + " " + System.currentTimeMillis();
         Double lat = 1d;
         Double lon = -1d;
         Tweet postTweet = TweetUtil.buildTweet(text, lon, lat);
-        System.out.println(JsonUtil.toPrettyJson(postTweet));
+        System.out.println(JsonUtil.toPrettyJson(postTweet, true, true));
 
         Tweet tweet = dao.create(postTweet);
         assertEquals(text, tweet.getText());
         assertNotNull(tweet.getCoordinates());
-        assertEquals(2,tweet.getCoordinates().getCoordinates().length);
-        assertEquals(lon,tweet.getCoordinates().getCoordinates().get(0));
-        assertEquals(lat,tweet.getCoordinates().getCoordinates().get(1));
+        assertEquals(2, tweet.getCoordinates().getCoordinates().size());
+        assertEquals(lon, tweet.getCoordinates().getCoordinates().get(0));
+        assertEquals(lat, tweet.getCoordinates().getCoordinates().get(1));
 
         assertTrue(hashTag.contains(tweet.getEntities().getHashtags().getText()));
 
-
-
     }
 }
+
+//    @Test
+//    public void findById() {
+//
+//    }
+//    }
+//
+//    @Test
+//    public void deleteById() {
+//    }
+
