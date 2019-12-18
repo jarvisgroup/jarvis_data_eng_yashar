@@ -10,6 +10,7 @@ import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.net.URLEncoder;
 
 
 /*
@@ -20,7 +21,7 @@ import java.net.URISyntaxException;
 public class TwitterDao implements CrdDao<Tweet, String>{
 
     // URI constants
-    private static final String API_BASE_URI = "http://api.twiiter.com";
+    private static final String API_BASE_URI = "http://api.twitter.com";
     private static final String POST_PATH = "/1.1/statuses/update.json";
     private static final String SHOW_PATH = "/1.1/statuses/show.json";
     private static final String DELETE_PATH = "/1.1/statuses/destroy";
@@ -42,13 +43,13 @@ public class TwitterDao implements CrdDao<Tweet, String>{
         URI uri;
         try{
             uri = getPostUri(tweet);
-        }catch (URISyntaxException e){
+        }catch (URISyntaxException | UnsupportedEncodingException e){
             throw new IllegalArgumentException("Invalid tweet input", e);
         }
         // execute Http request
         HttpResponse response = httpHelper.httpPost(uri);
         // validate response and parse response to Tweet object
-        return parseResponseBody(response,HTTP_OK);
+        return parseResponseBody(response, HTTP_OK);
 
     }
 
@@ -95,19 +96,19 @@ public class TwitterDao implements CrdDao<Tweet, String>{
     }
 
     // helper function to get the POST uri
-    private URI getPostUri(Tweet tweet) throws URISyntaxException {
+    private URI getPostUri(Tweet tweet) throws URISyntaxException, UnsupportedEncodingException {
         String text = tweet.getText();
         double lon = tweet.getCoordinates().getCoordinates().get(0);
         double lat = tweet.getCoordinates().getCoordinates().get(1);
-        URI uri = new URI(API_BASE_URI + POST_PATH + QUERY_SYM + AMPERSAND +
-                    "status" + EQUAL + text + "long" + EQUAL + lon + "lat" +
-                    EQUAL + lat);
+        URI uri = new URI(API_BASE_URI + POST_PATH + QUERY_SYM +
+                    "status" + EQUAL + URLEncoder.encode(text,"UTF-8") + AMPERSAND + "long" + EQUAL + lon +
+                    AMPERSAND + "lat" + EQUAL + lat);
         return uri;
     }
 
 
-    public Tweet parseResponseBody(HttpResponse response, Integer statusCode) {
-        Tweet tweet = null;
+    public Tweet parseResponseBody(HttpResponse response, int statusCode) {
+        Tweet tweet ;
         //check response status
         int status = response.getStatusLine().getStatusCode();
         if(status != statusCode){
@@ -117,6 +118,9 @@ public class TwitterDao implements CrdDao<Tweet, String>{
                 System.out.println("Response has no entity");
             }
             throw new RuntimeException("Unexpected HTTP status: " + status);
+        }
+        if(response.getEntity() == null){
+            throw new RuntimeException("Empty response body");
         }
 
         //Convert Response Entity to str
