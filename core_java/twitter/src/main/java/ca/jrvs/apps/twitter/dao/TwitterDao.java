@@ -5,6 +5,7 @@ import ca.jrvs.apps.twitter.util.JsonUtil;
 import org.apache.http.HttpResponse;
 import org.apache.http.util.EntityUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
@@ -18,6 +19,7 @@ import java.net.URLEncoder;
  * and make HTTP calls using HttpHelper
  * implements CrdDao interface
  */
+@Repository
 public class TwitterDao implements CrdDao<Tweet, String>{
 
     // URI constants

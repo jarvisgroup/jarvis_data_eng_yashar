@@ -10,11 +10,13 @@ import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.util.EntityUtils;
 import org.springframework.http.HttpMethod;
+import org.springframework.stereotype.Component;
 import sun.net.www.http.HttpClient;
 
 import java.io.IOException;
 import java.net.URI;
 
+@Component
 public class TwitterHttpHelper implements HttpHelper{
 
     // dependencies are specified as private var

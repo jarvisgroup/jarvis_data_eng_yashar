@@ -8,7 +8,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 // only properties with non-null values are to be included
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonPropertyOrder({
-     "create_at",
+     "created_at",
      "id",
      "id_str",
      "text",
@@ -22,8 +22,8 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 public class Tweet {
     // setting Json Property to variables
-    @JsonProperty("create_at")
-    private  String create_at;
+    @JsonProperty("created_at")
+    private  String created_at;
     @JsonProperty("id")
     private  long id;
     @JsonProperty("id_str")
@@ -46,14 +46,14 @@ public class Tweet {
 
 
     // getter and setter for all Json Properties
-    @JsonProperty("create_at")
-    public String getCreate_at() {
-        return create_at;
+    @JsonProperty("created_at")
+    public String getCreated_at() {
+        return created_at;
     }
 
-    @JsonProperty("create_at")
-    public void setCreate_at(String create_at) {
-        this.create_at = create_at;
+    @JsonProperty("created_at")
+    public void setCreated_at(String created_at) {
+        this.created_at = created_at;
     }
 
     @JsonProperty("id")
@@ -61,7 +61,7 @@ public class Tweet {
         return id;
     }
     @JsonProperty("id")
-    public void setId(int id) {
+    public void setId(long id) {
         this.id = id;
     }
 
