@@ -28,14 +28,14 @@ you need to type `mvn package`
 in order to run the project type `java -cp target/twitter-1.0-SNAPSHOT.jar "your arguments`
 
 ###Usage
-1. POST A TWEET
-    in order to post a tweet, user need to type:
+1. POST A TWEET:<br/>
+    in order to post a tweet, user need to type:<br/>
     `post "text you want to post" "latitude:longitude"`
-2. SHOW 
-    in order to search for a tweet, user need to type: 
+2. SHOW <br/>
+    in order to search for a tweet, user need to type: <br/>
     `show "tweet_id"` 
-3. DELETE
-    in order to delete a tweet, user need to type:
+3. DELETE<br/>
+    in order to delete a tweet, user need to type:<br/>
     `delete "tweet_id1,tweet_id2,tweet_id3......"`
 
 ## Model 
@@ -61,6 +61,7 @@ From Twitter API, we get a HttpResponse which contains all properties in JSON fo
 and we created 5 classes `Tweet`,`Entities`, `Coordinates`, `Hashtag` and `UserMention` to construct the tweet object.
 
 ## Improvements 
-1: Delete and Find tweet not only by IDs, but some other properties that is easy to remember.
-2: Diversify the post content, not only post text message, but also pictures or videos.
-3: 
+1. Delete and Find tweet not only by IDs, but some other properties that is easy to remember.
+2. Diversify the post content, not only post text message, but also pictures or videos.
+3. Adding more meaningful properties, for example `comments`, when search for Tweet, user will be able to see the comments along with the 
+tweet text.   
