@@ -8,7 +8,7 @@ import java.util.List;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class Hashtag {
     private String text;
-    private List<Integer> indices = null;
+    private List<Long> indices = null;
 
     public String getText() {
         return text;
@@ -18,11 +18,11 @@ public class Hashtag {
         this.text = text;
     }
 
-    public List<Integer> getIndices() {
+    public List<Long> getIndices() {
         return indices;
     }
 
-    public void setIndices(List<Integer> indices) {
+    public void setIndices(List<Long> indices) {
         this.indices = indices;
     }
 }

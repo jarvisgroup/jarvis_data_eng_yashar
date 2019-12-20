@@ -7,9 +7,9 @@ import java.util.List;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class UserMention {
     private String name;
-    private List<Integer> indices;
+    private List<Long> indices;
     private String screen_name;
-    private int id;
+    private long id;
     private String id_str;
 
     public String getName() {
@@ -20,11 +20,11 @@ public class UserMention {
         this.name = name;
     }
 
-    public List<Integer> getIndices() {
+    public List<Long> getIndices() {
         return indices;
     }
 
-    public void setIndices(List<Integer> indices) {
+    public void setIndices(List<Long> indices) {
         this.indices = indices;
     }
 
@@ -36,11 +36,11 @@ public class UserMention {
         this.screen_name = screen_name;
     }
 
-    public int getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(long id) {
         this.id = id;
     }
 

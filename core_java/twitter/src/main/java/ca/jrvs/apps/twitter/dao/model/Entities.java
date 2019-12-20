@@ -2,24 +2,26 @@ package ca.jrvs.apps.twitter.dao.model;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 
+import java.util.List;
+
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class Entities {
-    private Hashtag hashtag;
-    private UserMention userMention;
+    private List<Hashtag> hashtags;
+    private List<UserMention> user_mentions;
 
-    public Hashtag getHashtags() {
-        return hashtag;
+    public List<Hashtag> getHashtags() {
+        return hashtags;
     }
 
-    public void setHashtags(Hashtag hashtag) {
-        this.hashtag = hashtag;
+    public void setHashtags(List<Hashtag> hashtag) {
+        this.hashtags = hashtag;
     }
 
-    public UserMention getUserMention() {
-        return userMention;
+    public List<UserMention> getUserMention() {
+        return user_mentions;
     }
 
-    public void setUserMention(UserMention userMention) {
-        this.userMention = userMention;
+    public void setUserMention(List<UserMention> user_mentions) {
+        this.user_mentions = user_mentions;
     }
 }

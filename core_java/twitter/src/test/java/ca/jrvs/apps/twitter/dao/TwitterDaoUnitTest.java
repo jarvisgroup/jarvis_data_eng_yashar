@@ -25,11 +25,25 @@ public class TwitterDaoUnitTest {
     @InjectMocks
     TwitterDao dao;
 
+    public static final String tweetJsonStr = "{"
+            + "  \"created_at\": \"Mon Feb 18 21:24:39 +0000 2019\", \n"
+            + "  \"id\": 1097607853932564480, \n"
+            + "  \"id_str\":\"1097607853932564480\",\n"
+            + "  \"text\":\"text with loc223\",\n"
+            + "  \"entities\":{\n"
+            + "     \"hashtags\":[],\n"
+            + "     \"userMention\":[]"
+            + " },\n"
+            + "  \"coordinates\":null,\n"
+            + "  \"retweet_count\":0,\n"
+            + "  \"favorite_count\":0,\n"
+            + "  \"favorited\":false,\n"
+            + "  \"retweeted\":false}\n";
+
     @Test
     public void postTweet() throws Exception{
         // test failed request
-        String hashTag = "#abc";
-        String text = "Unit testing" + hashTag + " " + System.currentTimeMillis();
+        String text = "Unit testing" + System.currentTimeMillis();
         Double lat =1d;
         Double lon = -1d;
 
@@ -41,23 +55,6 @@ public class TwitterDaoUnitTest {
         }catch(RuntimeException e){
             assertTrue(true);
         }
-
-        // Test happy path
-        String tweetJsonStr = "{\n"
-                + "  \"created_at\": \"Mon Feb 18 21:24:39 +0000 2019\", \n"
-                + "  \"id\": 1097607853932564480, \n"
-                + "  \"id_str\":\"1097607853932564480\",\n"
-                + "  \"text\":\"text with loc223\",\n"
-                + "  \"entities\":{\n"
-                + "     \"hashtags\":[],"
-                + "     \"user_mentions\":[],"
-                + "  },\n"
-                + "  \"coordinates\":null,"
-                + "  \"retweet_count\":0,\n"
-                + "  \"favorite_count\":0,\n"
-                + "  \"favorited\":false,\n"
-                + "  \"retweeted\":false\n"
-                + "}";
 
         Mockito.when(mockHelper.httpPost(isNotNull())).thenReturn(null);
         TwitterDao spyDao = Mockito.spy(dao);
@@ -85,22 +82,6 @@ public class TwitterDaoUnitTest {
             assertTrue(true);
         }
 
-        // Test happy path
-        String tweetJsonStr = "{\n"
-                + "  \"created_at\": \"Mon Feb 18 21:24:39 +0000 2019\", \n"
-                + "  \"id\": 1097607853932564480, \n"
-                + "  \"id_str\":\"1097607853932564480\",\n"
-                + "  \"text\":\"text with loc223\",\n"
-                + "  \"entities\":{\n"
-                + "     \"hashtags\":[],"
-                + "     \"user_mentions\":[],"
-                + "  },\n"
-                + "  \"coordinates\":null,"
-                + "  \"retweet_count\":0,\n"
-                + "  \"favorite_count\":0,\n"
-                + "  \"favorited\":false,\n"
-                + "  \"retweeted\":false\n"
-                + "}";
 
         Mockito.when(mockHelper.httpPost(isNotNull())).thenReturn(null);
         TwitterDao spyDao = Mockito.spy(dao);
@@ -127,22 +108,7 @@ public class TwitterDaoUnitTest {
         }catch(RuntimeException e){
             assertTrue(true);
         }
-        // Test happy path
-        String tweetJsonStr = "{\n"
-                + "  \"created_at\": \"Mon Feb 18 21:24:39 +0000 2019\", \n"
-                + "  \"id\": 1097607853932564480, \n"
-                + "  \"id_str\":\"1097607853932564480\",\n"
-                + "  \"text\":\"text with loc223\",\n"
-                + "  \"entities\":{\n"
-                + "     \"hashtags\":[],"
-                + "     \"user_mentions\":[],"
-                + "  },\n"
-                + "  \"coordinates\":null,"
-                + "  \"retweet_count\":0,\n"
-                + "  \"favorite_count\":0,\n"
-                + "  \"favorited\":false,\n"
-                + "  \"retweeted\":false\n"
-                + "}";
+
 
         Mockito.when(mockHelper.httpPost(isNotNull())).thenReturn(null);
         TwitterDao spyDao = Mockito.spy(dao);
