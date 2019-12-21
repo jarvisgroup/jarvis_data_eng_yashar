@@ -1,4 +1,4 @@
-#JDBC (Java DataBase Connectivity)
+# Java JDBC App
 ## Introduction
 In Java, JDBC is the most common technology for accessing relational database from a relational database
 management system (RDMBs).
