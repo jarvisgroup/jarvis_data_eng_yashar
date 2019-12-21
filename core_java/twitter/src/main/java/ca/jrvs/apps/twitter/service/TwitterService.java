@@ -54,9 +54,7 @@ public class TwitterService implements Service {
         if(!id.matches("[0-9]+")){
             throw new IllegalArgumentException("ID is not in correct format");
         }
-
         return (Tweet) dao.findById(id);
-
     }
 
     /**

@@ -41,7 +41,6 @@ public class TwitterControllerIntTest {
         Tweet postTweet = TweetUtil.buildTweet(text, lon, lat);
         String[] user_input = {"post", postTweet.getText(),"-1d:1d"};
         tweet = controller.postTweet(user_input);
-
         String text2 = "testing2Controller" + System.currentTimeMillis();
         Double lat2 = 1d;
         Double lon2 = -1d;
@@ -62,7 +61,6 @@ public class TwitterControllerIntTest {
         Tweet showTestTweet = controller.showTweet(user_input);
         assertEquals(tweet.getText(), showTestTweet.getText());
         assertEquals(tweet.getId_str(), showTestTweet.getId_str());
-
     }
 
     @After

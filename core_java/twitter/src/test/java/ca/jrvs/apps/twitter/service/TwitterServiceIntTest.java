@@ -33,7 +33,6 @@ public class TwitterServiceIntTest {
         this.dao = new TwitterDao(httpHelper);
         this.twitterService = new TwitterService(dao);
         //create post
-//        String hashTag = "#abc";
         String text = "testing1Service"+ System.currentTimeMillis();
         Double lat = 1d;
         Double lon = -1d;
@@ -51,8 +50,6 @@ public class TwitterServiceIntTest {
         assertEquals(2, tweet.getCoordinates().getCoordinates().size());
         assertEquals(lon, tweet.getCoordinates().getCoordinates().get(0));
         assertEquals(lat, tweet.getCoordinates().getCoordinates().get(1));
-
-
     }
 
     @Test

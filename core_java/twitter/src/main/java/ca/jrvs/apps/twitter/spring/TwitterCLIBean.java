@@ -22,7 +22,6 @@ public class TwitterCLIBean {
         TwitterCLIApp app = context.getBean(TwitterCLIApp.class);
         app.run(args);
     }
-
     //dependency relationship
     @Bean
     public TwitterCLIApp twitterCLIApp(Controller controller){
@@ -52,5 +51,4 @@ public class TwitterCLIBean {
         String tokenSecret = System.getenv("tokenSecret");
         return new TwitterHttpHelper(consumerKey,consumerSecret,accessToken,tokenSecret);
     }
-
 }

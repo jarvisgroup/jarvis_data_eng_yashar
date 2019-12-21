@@ -21,7 +21,6 @@ import java.net.URLEncoder;
  */
 @Repository
 public class TwitterDao implements CrdDao<Tweet, String>{
-
     // URI constants
     private static final String API_BASE_URI = "http://api.twitter.com";
     private static final String POST_PATH = "/1.1/statuses/update.json";
@@ -31,10 +30,8 @@ public class TwitterDao implements CrdDao<Tweet, String>{
     private static final String QUERY_SYM = "?";
     private static final String AMPERSAND = "&";
     private static final String EQUAL = "=";
-
     // Response code
     private static final int HTTP_OK = 200;
-
     private HttpHelper httpHelper;
 
     @Autowired
@@ -52,7 +49,6 @@ public class TwitterDao implements CrdDao<Tweet, String>{
         HttpResponse response = httpHelper.httpPost(uri);
         // validate response and parse response to Tweet object
         return parseResponseBody(response, HTTP_OK);
-
     }
 
     @Override
@@ -67,7 +63,6 @@ public class TwitterDao implements CrdDao<Tweet, String>{
         HttpResponse response = httpHelper.httpPost(uri);
         // validate response and parse response to Tweet object
         return parseResponseBody(response,HTTP_OK);
-
     }
 
     @Override
@@ -82,7 +77,6 @@ public class TwitterDao implements CrdDao<Tweet, String>{
         HttpResponse response = httpHelper.httpPost(uri);
         // validate response and parse response to Tweet object
         return parseResponseBody(response,HTTP_OK);
-
     }
     // helper method to get the uri for DELETE
     private URI getDeleteUri(String s) throws URISyntaxException{
@@ -108,7 +102,6 @@ public class TwitterDao implements CrdDao<Tweet, String>{
         return uri;
     }
 
-
     public Tweet parseResponseBody(HttpResponse response, int statusCode) {
         Tweet tweet ;
         //check response status
@@ -124,7 +117,6 @@ public class TwitterDao implements CrdDao<Tweet, String>{
         if(response.getEntity() == null){
             throw new RuntimeException("Empty response body");
         }
-
         //Convert Response Entity to str
         String jsonStr;
         try{
@@ -132,7 +124,6 @@ public class TwitterDao implements CrdDao<Tweet, String>{
         }catch (IOException e){
             throw new RuntimeException("Failed to convert entity to String", e);
         }
-
         //parse Json String to Tweet Object
         try{
             tweet = JsonUtil.toObjectFromJson(jsonStr, Tweet.class);

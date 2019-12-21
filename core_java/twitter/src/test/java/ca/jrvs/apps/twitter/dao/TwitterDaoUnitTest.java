@@ -46,7 +46,6 @@ public class TwitterDaoUnitTest {
         String text = "Unit testing" + System.currentTimeMillis();
         Double lat =1d;
         Double lon = -1d;
-
         // exception
         Mockito.when(mockHelper.httpPost(isNotNull())).thenThrow(new RuntimeException("mock"));
         try{
@@ -55,7 +54,6 @@ public class TwitterDaoUnitTest {
         }catch(RuntimeException e){
             assertTrue(true);
         }
-
         Mockito.when(mockHelper.httpPost(isNotNull())).thenReturn(null);
         TwitterDao spyDao = Mockito.spy(dao);
         Tweet expectedTweet = JsonUtil.toObjectFromJson(tweetJsonStr,Tweet.class);
@@ -72,7 +70,6 @@ public class TwitterDaoUnitTest {
         String text = "Unit testing" + hashTag + " " + System.currentTimeMillis();
         Double lat =1d;
         Double lon = -1d;
-
         // exception
         Mockito.when(mockHelper.httpPost(isNotNull())).thenThrow(new RuntimeException("mock"));
         try{
@@ -81,7 +78,6 @@ public class TwitterDaoUnitTest {
         }catch(RuntimeException e){
             assertTrue(true);
         }
-
 
         Mockito.when(mockHelper.httpPost(isNotNull())).thenReturn(null);
         TwitterDao spyDao = Mockito.spy(dao);
@@ -108,8 +104,6 @@ public class TwitterDaoUnitTest {
         }catch(RuntimeException e){
             assertTrue(true);
         }
-
-
         Mockito.when(mockHelper.httpPost(isNotNull())).thenReturn(null);
         TwitterDao spyDao = Mockito.spy(dao);
         Tweet expectedTweet = JsonUtil.toObjectFromJson(tweetJsonStr,Tweet.class);
@@ -118,6 +112,5 @@ public class TwitterDaoUnitTest {
         Tweet tweet = spyDao.deleteById("1097607853932564480");
         assertNotNull(tweet);
         assertNotNull(tweet.getText());
-
     }
 }

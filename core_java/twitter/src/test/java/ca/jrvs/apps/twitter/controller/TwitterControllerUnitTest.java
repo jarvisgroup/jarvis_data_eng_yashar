@@ -53,7 +53,6 @@ public class TwitterControllerUnitTest {
             assertNotNull(tweet.getText());
             assertNotNull(tweet.getCoordinates());
             assertNotNull(tweet.getId_str());
-
         }
     }
 }

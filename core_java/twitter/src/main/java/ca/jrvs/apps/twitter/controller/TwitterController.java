@@ -40,7 +40,6 @@ public class TwitterController implements Controller{
         // validate coordinates and twitter text
         if(coorArray.length != 2 || text.isEmpty() == true ){
             throw new IllegalArgumentException(
-
                     "Invalid format\nUSAGE: TwitterCLIApp post \"text\" \"latitude:longitude\"");
         }
         Double lat = null;
@@ -48,15 +47,13 @@ public class TwitterController implements Controller{
         try{
             lat = Double.parseDouble(coorArray[0]);
             lon = Double.parseDouble(coorArray[1]);
-        }catch (Exception e ){
+        }catch (NumberFormatException e){
             throw new IllegalArgumentException("Invalid location format",e);
         }
-
         // build tweet using argument and call service
         Tweet postTweet = TweetUtil.buildTweet(text,lon,lat);
         return service.postTweet(postTweet);
     }
-
     /**
      * Parse user argument and search a tweet by calling service classes
      *

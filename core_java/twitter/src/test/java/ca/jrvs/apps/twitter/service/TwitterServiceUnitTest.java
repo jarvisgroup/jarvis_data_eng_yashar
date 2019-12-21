@@ -56,6 +56,5 @@ public class TwitterServiceUnitTest {
             assertNotNull(tweet.getCoordinates());
             assertNotNull(tweet.getId_str());
         }
-
     }
 }
