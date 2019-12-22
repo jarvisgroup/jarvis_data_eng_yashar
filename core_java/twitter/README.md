@@ -27,7 +27,7 @@ In order to build the project
 you need to type `mvn package` 
 in order to run the project type `java -cp target/twitter-1.0-SNAPSHOT.jar "your arguments`
 
-###Usage
+### Usage
 1. POST A TWEET:<br/>
     in order to post a tweet, user need to type:<br/>
     `post "text you want to post" "latitude:longitude"`
