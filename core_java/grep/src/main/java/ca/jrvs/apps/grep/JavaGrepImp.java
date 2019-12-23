@@ -112,12 +112,12 @@ public class JavaGrepImp implements JavaGrep{
         buffer_writer.close();
     }
 
-    // getters and setters for 3 arguments
+    // getters and setters for 3 vars
     @Override
     public String getRootPath(){
         return root_path;
     }
-    // getters and setters for 3 var
+    
     @Override
     public void setRootPath(String rootPath){
         this.root_path = rootPath;
