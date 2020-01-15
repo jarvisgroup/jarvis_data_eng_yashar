@@ -1,11 +1,16 @@
 package ca.jrvs.apps.trading.controller;
 
 import ca.jrvs.apps.trading.model.domain.IexQuote;
+import ca.jrvs.apps.trading.model.domain.Quote;
 import ca.jrvs.apps.trading.service.QuoteService;
+import com.sun.org.apache.xpath.internal.operations.Quo;
 import org.springframework.http.HttpStatus;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.stereotype.Repository;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @Controller
 @RequestMapping("/quote")
@@ -26,4 +31,49 @@ public class QuoteController {
             throw ResponseExceptionUtil.getResponseStatusException(e);
         }
     }
+
+    @PutMapping(path = "/iexMarketData")
+    @ResponseStatus(HttpStatus.OK)
+    @ResponseBody
+    public List<Quote> updateMarketData(){
+        try{
+            return quoteService.updateMarketData();
+        }catch (Exception e){
+            throw ResponseExceptionUtil.getResponseStatusException(e);
+        }
+    }
+
+    @PutMapping(path = "/")
+    @ResponseStatus(HttpStatus.OK)
+    @ResponseBody
+    public Quote putQuote(@RequestBody Quote quote){
+        try{
+            return quoteService.saveQuote(quote);
+        }catch (Exception e){
+            throw  ResponseExceptionUtil.getResponseStatusException(e);
+        }
+    }
+
+    @PostMapping(path = "/tickerId/{tickerId}")
+    @ResponseStatus(HttpStatus.CREATED)
+    @ResponseBody
+    public Quote createdQuote(@PathVariable String tickerId){
+        try{
+            return quoteService.saveQuote(tickerId);
+        }catch (Exception e){
+            throw ResponseExceptionUtil.getResponseStatusException(e);
+        }
+    }
+
+    @GetMapping(path = "dailyList")
+    @ResponseStatus(HttpStatus.OK)
+    @ResponseBody
+    public List<Quote> getDailyList(){
+        try{
+            return quoteService.findAllQuotes();
+        }catch (Exception e){
+            throw ResponseExceptionUtil.getResponseStatusException(e);
+        }
+    }
+
 }

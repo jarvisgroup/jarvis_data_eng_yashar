@@ -470,7 +470,7 @@ public class IexQuote {
     }
 
     @JsonProperty("iexBidPrice")
-    public Integer getIexBidPrice() {
+    public Double getIexBidPrice() {
         return iexBidPrice;
     }
 

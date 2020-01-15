@@ -14,13 +14,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataRetrievalFailureException;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
-import sun.net.www.http.HttpClient;
-
-import java.io.Closeable;
 import java.io.IOException;
-import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
-import java.net.URL;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
@@ -81,6 +76,18 @@ public class MarketDataDao implements CrudRepository<IexQuote,String> {
         return HttpClients.custom().setConnectionManager(httpClientConnectionManager)
                 .setConnectionManagerShared(true).build();
     }
+
+//    @Override
+//    public List<IexQuote> findAllById(Iterable<String> iterable) {
+//        List<IexQuote> iexQuotes = new ArrayList<>();
+//        for(String s : iterable){
+//            iexQuotes.add(findById(s));
+//        }
+//
+//        return iexQuotes;
+//    }
+
+
     @Override
     public <S extends IexQuote> S save(S s) {
         throw new UnsupportedOperationException("Not Implemented");
@@ -102,8 +109,8 @@ public class MarketDataDao implements CrudRepository<IexQuote,String> {
     }
 
     @Override
-    public Iterable<IexQuote> findAllById(Iterable<String> iterable) {
-        throw new UnsupportedOperationException("Not Implemented");
+    public Iterable<IexQuote> findAllById(Iterable<String> strings) {
+        return null;
     }
 
     @Override
