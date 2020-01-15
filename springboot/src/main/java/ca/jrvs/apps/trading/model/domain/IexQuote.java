@@ -125,7 +125,7 @@ public class IexQuote {
     @JsonProperty("avgTotalVolume")
     private Integer avgTotalVolume;
     @JsonProperty("iexBidPrice")
-    private Integer iexBidPrice;
+    private Double iexBidPrice;
     @JsonProperty("iexBidSize")
     private Integer iexBidSize;
     @JsonProperty("iexAskPrice")
@@ -475,7 +475,7 @@ public class IexQuote {
     }
 
     @JsonProperty("iexBidPrice")
-    public void setIexBidPrice(Integer iexBidPrice) {
+    public void setIexBidPrice(Double iexBidPrice) {
         this.iexBidPrice = iexBidPrice;
     }
 

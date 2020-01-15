@@ -121,4 +121,5 @@ public abstract class JdbcCrudDao<T extends Entity<Integer>> implements CrudRepo
         String deleteSql = "DELETE FROM " + getTableName();
         getJdbcTemplate().update(deleteSql);
     }
+
 }
