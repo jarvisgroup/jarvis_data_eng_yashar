@@ -14,7 +14,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Repository
-public class TraderDao extends JdbcCrudDao<Trader> {
+public class TraderDao extends JdbcCrudDao<Trader,Integer> {
     private static final String TABLE_NAME = "trader";
     private static final String ID_COLUMN_NAME = "ticker";
 
@@ -54,24 +54,24 @@ public class TraderDao extends JdbcCrudDao<Trader> {
         return Trader.class;
     }
 
-//    @Override
-//    protected int updateOne(Trader entity) {
-//        String updateSql = "UPDATE ticker SET last_price=?, bid_price=?,"
-//                            + "bid_size=?, ask_price=?,ask_size=? WHERE ticker=?";
-//        return getJdbcTemplate().update(updateSql,makeU)
-//    }
-//
-//
-//    // helper method that makes sql update values objects
-//    private Object[] makeUpdateValues(Trader trader) {
-//        List<Object> values = new ArrayList<>();
-//        values.add(quote.getId());
-//        values.add(quote.getLastPrice());
-//        values.add(quote.getBidPrice());
-//        values.add(quote.getBidSize());
-//        values.add(quote.getAskPrice());
-//        values.add(quote.getAskSize());
-//        return values.toArray();
+    @Override
+    protected int updateOne(Trader entity) {
+        String updateSql = "UPDATE ticker SET last_price=?, bid_price=?,"
+                            + "bid_size=?, ask_price=?,ask_size=? WHERE ticker=?";
+        return getJdbcTemplate().update(updateSql,makeUpdateValues(entity));
+    }
+
+
+    //    helper method that makes sql update values objects
+    private Object[] makeUpdateValues(Trader trader) {
+        List<Object> values = new ArrayList<>();
+        values.add(trader.getId());
+        values.add(trader.getFirst_name());
+        values.add(trader.getLast_name());
+        values.add(trader.getCountry());
+        values.add(trader.getDob());
+        values.add(trader.getEmail());
+        return values.toArray();
     }
 
 

@@ -23,7 +23,7 @@ import java.util.Optional;
 
 
 @Repository
-public class QuoteDao extends JdbcCrudDao<Quote> {
+public class QuoteDao extends JdbcCrudDao<Quote,String> {
 
     private static final String TABLE_NAME = "quote";
     private static final String ID_COLUMN_NAME = "ticker";
@@ -36,8 +36,8 @@ public class QuoteDao extends JdbcCrudDao<Quote> {
 
     @Autowired
     public QuoteDao(DataSource dataSource){
-        jdbcTemplate = new JdbcTemplate((javax.sql.DataSource) dataSource);
-        simpleJdbcInsert = new SimpleJdbcInsert((JdbcTemplate) dataSource).withTableName(TABLE_NAME);
+        this.jdbcTemplate = new JdbcTemplate(dataSource);
+        this.simpleJdbcInsert = new SimpleJdbcInsert(dataSource).withTableName(TABLE_NAME).usingGeneratedKeyColumns(ID_COLUMN_NAME);
     }
 
 

@@ -18,7 +18,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-public abstract class JdbcCrudDao<T extends Entity<Integer>> implements CrudRepository<T,Integer> {
+public abstract class JdbcCrudDao<T extends Entity,ID> implements CrudRepository<T,Integer> {
     private static final Logger logger = LoggerFactory.getLogger(JdbcCrudDao.class);
 
     abstract public JdbcTemplate getJdbcTemplate();
@@ -31,7 +31,7 @@ public abstract class JdbcCrudDao<T extends Entity<Integer>> implements CrudRepo
 
     @Override
     public <S extends T> S save(S entity) {
-        if(existsById(entity.getId())){
+        if(existsById((Integer) entity.getId())){
             if(updateOne(entity) != 1){
                 throw new DataRetrievalFailureException("Unable to update quote");
             }
@@ -108,12 +108,12 @@ public abstract class JdbcCrudDao<T extends Entity<Integer>> implements CrudRepo
 
     @Override
     public void delete(T entity) {
-
+        throw new UnsupportedOperationException("Not Implemented");
     }
 
     @Override
     public void deleteAll(Iterable<? extends T> entities) {
-
+        throw new UnsupportedOperationException("Not implemented");
     }
 
     @Override
