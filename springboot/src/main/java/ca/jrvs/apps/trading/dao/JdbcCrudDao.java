@@ -18,7 +18,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-public abstract class JdbcCrudDao<T extends Entity,ID> implements CrudRepository<T,Integer> {
+public abstract class JdbcCrudDao<T extends Entity,ID> implements CrudRepository<T,ID> {
     private static final Logger logger = LoggerFactory.getLogger(JdbcCrudDao.class);
 
     abstract public JdbcTemplate getJdbcTemplate();
@@ -59,7 +59,7 @@ public abstract class JdbcCrudDao<T extends Entity,ID> implements CrudRepository
     }
 
     @Override
-    public Optional<T> findById(Integer id) {
+    public Optional<T> findById(ID id) {
         Optional<T> entity = Optional.empty();
         String selectSql = "SELECT * FROM " + getTableName() + " WHERE " + getIdColumnName() + "=?";
         try{
@@ -71,7 +71,7 @@ public abstract class JdbcCrudDao<T extends Entity,ID> implements CrudRepository
     }
 
     @Override
-    public boolean existsById(Integer id) {
+    public boolean existsById(ID id) {
         if(id == null){
             throw new IllegalArgumentException("Cannot find id");
         }
@@ -98,7 +98,7 @@ public abstract class JdbcCrudDao<T extends Entity,ID> implements CrudRepository
     }
 
     @Override
-    public void deleteById(Integer id) {
+    public void deleteById(ID id) {
         if(id == null){
             throw new IllegalArgumentException("ID cannot be null");
         }
