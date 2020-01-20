@@ -13,6 +13,8 @@ import javax.transaction.Transactional;
 import java.util.ArrayList;
 import java.util.List;
 
+import static java.lang.Integer.parseInt;
+
 @Transactional
 @Service
 public class QuoteService {
@@ -31,7 +33,8 @@ public class QuoteService {
      * @throws IllegalArgumentException if ticker is invalid
      */
     public IexQuote findIexQuoteByTicker(String ticker){
-        if(quoteDao.existsById(ticker) == false){
+        Integer intTicker = parseInt(ticker);
+        if(quoteDao.existsById(intTicker) == false){
             throw new IllegalArgumentException("Invalid ticker");
         }
         return marketDataDao.findById(ticker).orElseThrow(()-> new IllegalArgumentException(ticker + "is invalid"));
