@@ -11,8 +11,8 @@ public class JavaGrepImp implements JavaGrep{
 
     // setting vars
     private String regex;
-    private String root_path;
-    private String outfile;
+    private String rootPath;
+    private String outFile;
 
 
     public static void main(String[] args){
@@ -32,15 +32,15 @@ public class JavaGrepImp implements JavaGrep{
     }
     @Override
     public void process() throws IOException {
-            List<String> matched_line = new ArrayList<String>();
-            for(File file : listFiles(this.root_path)){
+            List<String> matchedLine = new ArrayList<String>();
+            for(File file : listFiles(this.rootPath)){
                 for( String line : readLines(file) ){
                     if(containsPattern(line)){
-                        matched_line.add(line);
+                        matchedLine.add(line);
                     }
                 }
             }
-            writeToFile(matched_line);
+            writeToFile(matchedLine);
 
     }
 
@@ -48,20 +48,20 @@ public class JavaGrepImp implements JavaGrep{
     @Override
     public List<File> listFiles(String rootDir){
         // initialize the output List
-        List<File> all_files= new ArrayList<File>();
+        List<File> allFiles= new ArrayList<File>();
         File root = new File(rootDir);
         // listing all child file
         File[] child = root.listFiles();
         for( File i : child){
             // check if child is sub-directory
             if(i.isDirectory()){
-                List<File> child_dir = listFiles(i.getAbsolutePath());
-                all_files.addAll(child_dir);
+                List<File> childDir = listFiles(i.getAbsolutePath());
+                all_files.addAll(childDir);
             }else{
                 all_files.add(i);
             }
         }
-        return all_files;
+        return allFiles;
     }
 
     // read a file and return all the lines
@@ -71,13 +71,13 @@ public class JavaGrepImp implements JavaGrep{
         if(inoutFile.isFile() == false){
             throw new IllegalArgumentException("No such file exists");
         }
-        List<String> all_lines = new ArrayList<String>();
+        List<String> allLines = new ArrayList<String>();
         try{
-            BufferedReader buffer_reader = new BufferedReader(new FileReader(inoutFile));
-            String line = buffer_reader.readLine();
+            BufferedReader bufferReader = new BufferedReader(new FileReader(inoutFile));
+            String line = bufferReader.readLine();
             while(line != null){
                 all_lines.add(line);
-                line = buffer_reader.readLine();
+                line = bufferReader.readLine();
             }
         // handle FileReader()
         }catch (FileNotFoundException e){
@@ -86,7 +86,7 @@ public class JavaGrepImp implements JavaGrep{
         }catch (IOException e){
             e.fillInStackTrace();
         }
-        return all_lines;
+        return allLines;
     }
 
     //    check if a line contains the regex pattern
@@ -104,23 +104,23 @@ public class JavaGrepImp implements JavaGrep{
     // Write lines to a file
     @Override
     public void writeToFile(List<String> lines) throws IOException{
-        BufferedWriter buffer_writer = new BufferedWriter(new FileWriter(this.getOutFile()));
+        BufferedWriter bufferWriter = new BufferedWriter(new FileWriter(this.getOutFile()));
         for (String line : lines){
-            buffer_writer.write(line);
-            buffer_writer.newLine();
+            bufferWriter.write(line);
+            bufferWriter.newLine();
         }
-        buffer_writer.close();
+        bufferWriter.close();
     }
 
     // getters and setters for 3 vars
     @Override
     public String getRootPath(){
-        return root_path;
+        return rooTPath;
     }
     
     @Override
     public void setRootPath(String rootPath){
-        this.root_path = rootPath;
+        this.rootPath = rootPath;
     }
     @Override
     public String getRegex(){
@@ -132,11 +132,11 @@ public class JavaGrepImp implements JavaGrep{
     }
     @Override
     public String getOutFile(){
-        return outfile;
+        return outFile;
     }
     @Override
     public void setOutFile(String outFile){
-        this.outfile = outFile;
+        this.outFile = outFile;
     }
 
 }
