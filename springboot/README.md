@@ -1,13 +1,13 @@
-#SpringBoot Trading App
-##Introduction 
+# SpringBoot Trading App
+## Introduction 
 This Java Application is an online stock trading simulation REST API which is built using SpringBoot
 Micro-service and MVC design pattern 
-##Quick Start 
+## Quick Start 
 
 Docker Script:
 TradingApp with SwaggerUI: 
 
-##Architecture
+##  Architecture
 Component Diagram
 
 1.Controller Layer
@@ -20,16 +20,16 @@ Component Diagram
 
 5.PSQL and IEX
 
-##REST API Usage
-###Swagger
+##  REST API Usage
+###  Swagger
 
-###[Quote Controller](./springboot/src/main/java/ca/jrvs/apps/trading/controller/QuoteController.java) 
-###[Trader Controller](./springboot/src/main/java/ca/jrvs/apps/trading/controller/TraderAccountController.java)  
-###[Order Controller](./springboot/src/main/java/ca/jrvs/apps/trading/controller/OrderController.java) 
-###[App Controller](./springboot/src/main/java/ca/jrvs/apps/trading/controller) 
-###[DashBoard Controller](./springboot/src/main/java/ca/jrvs/apps/trading/controller/DashboardController.java) 
+### [Quote Controller](./springboot/src/main/java/ca/jrvs/apps/trading/controller/QuoteController.java) 
+### [Trader Controller](./springboot/src/main/java/ca/jrvs/apps/trading/controller/TraderAccountController.java)  
+### [Order Controller](./springboot/src/main/java/ca/jrvs/apps/trading/controller/OrderController.java) 
+### [App Controller](./springboot/src/main/java/ca/jrvs/apps/trading/controller) 
+### [DashBoard Controller](./springboot/src/main/java/ca/jrvs/apps/trading/controller/DashboardController.java) 
 
-##Docker Deployment 
+## Docker Deployment 
 docker diagram 
 
-##Improvements
+## Improvements
