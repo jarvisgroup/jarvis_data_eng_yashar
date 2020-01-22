@@ -44,14 +44,14 @@ public class JavaGrepLambdaImp  extends JavaGrepImp{
     @Override
     public List<String> readLines(File inoutFile){
         // pre-condition: check if inoutfile is a normal file
-        List<String> all_lines= new ArrayList<String>();
+        List<String> allLines= new ArrayList<String>();
         try{
-            BufferedReader buffer_reader = new BufferedReader(new FileReader(inoutFile));
-            all_lines = buffer_reader.lines().collect(Collectors.toList());
+            BufferedReader bufferReader = new BufferedReader(new FileReader(inoutFile));
+            allLines = bufferReader.lines().collect(Collectors.toList());
         }catch (FileNotFoundException e) {
             e.fillInStackTrace();
         }
-        return all_lines;
+        return allLines;
     }
 
 
