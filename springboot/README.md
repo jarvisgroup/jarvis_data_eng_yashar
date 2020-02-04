@@ -1,11 +1,18 @@
 # SpringBoot Trading App
 ## Introduction 
-This Java Application is an online stock trading simulation REST API which is built using SpringBoot
-Micro-service and MVC design pattern 
-## Quick Start 
+This Java Application is an online stock trading simulation REST API that allows trader to buy and sell stocks built using  
+SpringBoot MicroService and MVC Architecture, and Maven is used for project management. All stocks related data are extracted from IEX cloud which is a platform that makes
+financial data and services accessible to everyone, those data then will be persisted in PostgreSql databases. 
 
-Docker Script:
-TradingApp with SwaggerUI: 
+## Quick Start 
+- Prerequisites
+    - A Machine running CENTOS 7
+    - Docker installed 
+    - An IEX Cloud Account for API token access
+    - Set up environment variables (`PSQL_USER`, `PSQL_PASSWORD`, `IEX_PUB_TOKEN`)
+- Docker Script:
+    
+- TradingApp with SwaggerUI: 
 
 ##  Architecture
 Component Diagram
