@@ -4,8 +4,7 @@ import ca.jrvs.apps.trading.model.domain.Account;
 import ca.jrvs.apps.trading.model.domain.Trader;
 import ca.jrvs.apps.trading.model.view.TraderAccountView;
 import ca.jrvs.apps.trading.service.TraderAccountService;
-import io.swagger.annotations.Api;
-import io.swagger.models.auth.In;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
@@ -13,7 +12,7 @@ import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
-import java.time.LocalDate;
+import java.util.Date;
 
 //@Api(value = "Trader", produces = PageAttributes.MediaType.APPLICATION_JSON_UTF8_VALUE)
 @Controller
@@ -33,7 +32,7 @@ public class TraderAccountController {
             path = "/firstname/{firstname}/lastname/{lastname}/dob/{dob}/country/{country}/email/{email}",
             produces = {MediaType.APPLICATION_JSON_UTF8_VALUE}
     )
-    public TraderAccountView createTrader(@PathVariable String firstname, @PathVariable String lastname, @PathVariable @DateTimeFormat(pattern = "yyyy-mm-dd")LocalDate dob,
+    public TraderAccountView createTrader(@PathVariable String firstname, @PathVariable String lastname, @PathVariable @DateTimeFormat(pattern = "yyyy-mm-dd") Date dob,
                                           @PathVariable String country, @PathVariable String email){
         try{
             Trader trader = new Trader();

@@ -1,6 +1,5 @@
 package ca.jrvs.apps.trading.dao;
 
-import ca.jrvs.apps.trading.model.domain.Account;
 import ca.jrvs.apps.trading.model.domain.SecurityOrder;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

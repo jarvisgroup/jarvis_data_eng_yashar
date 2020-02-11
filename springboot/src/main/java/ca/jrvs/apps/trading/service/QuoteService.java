@@ -33,8 +33,7 @@ public class QuoteService {
      * @throws IllegalArgumentException if ticker is invalid
      */
     public IexQuote findIexQuoteByTicker(String ticker){
-        Integer intTicker = parseInt(ticker);
-        if(quoteDao.existsById(intTicker) == false){
+        if(quoteDao.existsById(ticker) == false){
             throw new IllegalArgumentException("Invalid ticker");
         }
         return marketDataDao.findById(ticker).orElseThrow(()-> new IllegalArgumentException(ticker + "is invalid"));
