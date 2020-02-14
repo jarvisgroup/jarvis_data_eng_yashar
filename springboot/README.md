@@ -1,4 +1,13 @@
 # SpringBoot Trading App
+## Table of Content 
+[Introduction](##Introduction)  
+[Quick Start](##Quick Start)  
+[Architecture](##Architecture)  
+[REST API Usage](##REST API Usage)  
+[Docker Deployment](##Decoker Deployment)  
+[Improvement](##Imporvement)  
+
+
 ## Introduction 
 This Java Application is an online stock trading simulation REST API that allows trader to buy and sell stocks built using  
 SpringBoot MicroService and MVC Architecture, and Maven is used for project management. All stocks related data are extracted from IEX cloud which is a platform that makes
@@ -75,32 +84,54 @@ In this trading App, Swagger provides description to all the API endpoints and a
 ### [Quote Controller](./springboot/src/main/java/ca/jrvs/apps/trading/controller/QuoteController.java)
 Quote Controller handles HTTP requests that access, modify information for `Quote` Table from PostgresDatabase, and retrieval from IEX Cloud
  It has 5 endpoints:  
- - GET/quote/dailylist: retrieve the latest Quote information using   
- - GET/quote/iex/ticker/{tickers}: retrieve 
- - POST/quote/tickerID/{tickerId}  
- - PUT/quote/
- - PUT/quote/iexMarketData 
+ - `GET/quote/dailylist`
+    - retrieve the latest Quote information and show all securities that are available.
+ - `GET/quote/iex/ticker/{tickers}`
+    - retrieves qutoes from IEX cloud for the specific ticker. 
+ - `POST/quote/tickerID/{tickerId}`
+    - add or update the spicific ticker to the Quote table.
+ - `PUT/quote/`
+    - update the specific quote from Quote table by manually entering each parameters(`bidPrice`, `bidSize`, `askPrice`
+    `askSize` and `lastPrice`).
+ - `PUT/quote/iexMarketData`
+    -  update all the quote in Quote table using Iex market data. 
  
 ### [Trader Controller](./springboot/src/main/java/ca/jrvs/apps/trading/controller/TraderAccountController.java)  
-
-- DELETE/trader/tradeId/{traderId}: delete a trader
-- POST/trader/: create a trader and an account with DTO
-- POST/trader/firstname/{firstname}/lastname/{lastname}/dob/{dob}/country/{country}/email/{emails}: create a 
-trader and an account
-- PUT/trader/deposite/traderId/{traderId}/amount/{amount}: Deposit a fund
-- PUT/trader/withdraw/tradeId/{traderId}/amount/{amount}: Withdraw a fund
+Trader Controller handles HTTP request about user's trader account, including create or delete account, or making deposit or withdraw.
+It has 5 endpoints: 
+- `DELETE/trader/tradeId/{traderId}`
+    - delete a trader and the account associated with this trader, an account can be deleted only if the account 
+    has no fund and no open position. 
+- `POST/trader/` 
+    - create a trader and an account with DTO.
+- `POST/trader/firstname/{firstname}/lastname/{lastname}/dob/{dob}/country/{country}/email/{emails}` 
+    - create a trader and an account, specify basic information for the trader including, name, country, emails and date of birth.
+- `PUT/trader/deposit/traderId/{traderId}/amount/{amount}`
+    - Deposit a fund into a trader account with given trader ID.
+- `PUT/trader/withdraw/tradeId/{traderId}/amount/{amount}`
+    - Withdraw a fund from a trader account with given trader ID.
 
 ### [Order Controller](./springboot/src/main/java/ca/jrvs/apps/trading/controller/OrderController.java) 
+Order Controller handles request related to sell and buy market orders. It has only one endpoint: 
+- `POST/order/marketOrder`
+    - submit and executes a market order with given accoutn ID, ticker name and size. positive size indicates it's a
+    buy order, and negative size indicates a sell order.
 
-- POST/order/marketOrder: submit a market order
-### [App Controller](./springboot/src/main/java/ca/jrvs/apps/trading/controller) 
-- GET/health : health
 ### [DashBoard Controller](./springboot/src/main/java/ca/jrvs/apps/trading/controller/DashboardController.java) 
-
-- GET/dashboard/portfolio/traderId/{traderId}: show portfolio by traderId
-- GET/dashboard/profile/traderId/{traderId}: show trader profile by traderId
+DashBoard Controller handles request to view Trader information. It has 2 endpoints: 
+- `GET/dashboard/portfolio/traderId/{traderId}`
+    - show trader's Trading portfolio by traderId, returns a list of Securities trader has.
+- `GET/dashboard/profile/traderId/{traderId}`
+    - show trader's profile by traderId.
 
 ## Docker Deployment 
 docker diagram 
 
 ## Improvements
+1. Requires PIN or password when a trader opens an account, and requires authentication when selling or buying orders,
+as well as when deposit or withdraw from an account.
+2. Keep the deleted account or trader information for a limited period of time, before permanently deleted, just in case the 
+user wants to retrieve the account. 
+3. Allow one trader to have multiple accounts.
+4. Allow trader to trader transaction, trader can buy or sell orders to other traders.
+5. Create a back up database or periodically save all data into cloud storage. 
