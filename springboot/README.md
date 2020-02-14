@@ -1,11 +1,11 @@
 # SpringBoot Trading App
 ## Table of Content 
-[Introduction](##Introduction)  
-[Quick Start](##Quick Start)  
-[Architecture](##Architecture)  
-[REST API Usage](##REST API Usage)  
-[Docker Deployment](##Decoker Deployment)  
-[Improvement](##Imporvement)  
+- [Introduction](#Introduction)  
+- [Quick Start](#Quick-Start)  
+- [Architecture](#Architecture)  
+- [REST API Usage](#REST API Usage)  
+- [Docker Deployment](#Docker-Deployment)  
+- [Improvement](#Improvement)  
 
 
 ## Introduction 
