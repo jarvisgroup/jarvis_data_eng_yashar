@@ -3,9 +3,9 @@
 - [Introduction](#Introduction)  
 - [Quick Start](#Quick-Start)  
 - [Architecture](#Architecture)  
-- [REST API Usage](#REST API Usage)  
+- [REST API Usage](#REST-API-Usage)  
 - [Docker Deployment](#Docker-Deployment)  
-- [Improvement](#Improvement)  
+- [Improvement](#Improvements)  
 
 
 ## Introduction 
