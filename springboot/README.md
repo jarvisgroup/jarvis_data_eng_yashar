@@ -55,11 +55,11 @@ data to the application.
 - TradingApp with SwaggerUI: 
     After both containers are up and running, we need to make HTTP call using SWAGGER UI to consumer the REST API  
     entering http://localhost:5000/swagger-ui.html from your web browser to consume the REST API  
-    
+    ![screenshot](assets/swagger.PNG)
     
 
 ##  Architecture
-Component Diagram
+![Component Diagram](assets/Architecture.PNG)
 
 1.Controller Layer: Controller Layer handles HTTP request from the clients, each controller handles different requests, 
 and calling different methods from corresponding services and then, send HTTP responses back to the clients.  
@@ -125,7 +125,9 @@ DashBoard Controller handles request to view Trader information. It has 2 endpoi
     - show trader's profile by traderId.
 
 ## Docker Deployment 
-docker diagram 
+![docker diagram](assets/docker.PNG)
+This application is deployed using Docker. Docker Deamon builds Two images (`tradin-psql` and `trading-app`) which are pulled from Docker hub.
+Then, it creates both containers on a network so that each containers can communicate with each other. 
 
 ## Improvements
 1. Requires PIN or password when a trader opens an account, and requires authentication when selling or buying orders,
