@@ -3,13 +3,19 @@ package ca.jrvs.apps.trading.controller;
 import ca.jrvs.apps.trading.model.domain.SecurityOrder;
 import ca.jrvs.apps.trading.model.dto.MarketOrderDto;
 import ca.jrvs.apps.trading.service.OrderService;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiResponse;
+import io.swagger.annotations.ApiResponses;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+@Api(value = "order", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
 @Controller
-@RequestMapping("/")
+@RequestMapping("/order")
 public class OrderController {
     private OrderService orderService;
 
@@ -18,6 +24,11 @@ public class OrderController {
         this.orderService = orderService;
     }
 
+    @ApiOperation(value = "Submit a matket order", notes = "Submit a market order.")
+    @ApiResponses(value = {
+            @ApiResponse(code = 404, message = "ticker not found "),
+            @ApiResponse(code = 400, message = "Unable to deposite due to user input ")
+    } )
     @PostMapping(path = "/marketOrder")
     @ResponseStatus(HttpStatus.CREATED)
     @ResponseBody

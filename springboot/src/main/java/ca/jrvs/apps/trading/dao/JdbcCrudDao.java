@@ -6,7 +6,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.dao.DataRetrievalFailureException;
 import org.springframework.dao.EmptyResultDataAccessException;
-import org.springframework.dao.IncorrectResultSizeDataAccessException;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -31,7 +30,7 @@ public abstract class JdbcCrudDao<T extends Entity,ID> implements CrudRepository
 
     @Override
     public <S extends T> S save(S entity) {
-        if(existsById((Integer) entity.getId())){
+        if(existsById((ID) entity.getId())){
             if(updateOne(entity) != 1){
                 throw new DataRetrievalFailureException("Unable to update quote");
             }
@@ -87,7 +86,7 @@ public abstract class JdbcCrudDao<T extends Entity,ID> implements CrudRepository
     }
 
     @Override
-    public List<T> findAllById(Iterable<Integer> integers) {
+    public List<T> findAllById(Iterable<ID> integers) {
         return null;
     }
 

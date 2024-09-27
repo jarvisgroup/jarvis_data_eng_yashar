@@ -29,10 +29,9 @@ public class MarketDataDaoIntTest {
 
     @Test
     public void findIexQuoteByTickers() throws IOException{
-        List<IexQuote> quoteList = dao.findAllById(Arrays.asList("AAPL","FB"));
+        List<IexQuote> quoteList = (List<IexQuote>) dao.findAllById(Arrays.asList("AAPL","FB"));
         assertEquals(2,quoteList.size());
         assertEquals("AAPL",quoteList.get(0).getSymbol());
-
         try{
             dao.findAllById(Arrays.asList("AAPL","FB"));
             fail();

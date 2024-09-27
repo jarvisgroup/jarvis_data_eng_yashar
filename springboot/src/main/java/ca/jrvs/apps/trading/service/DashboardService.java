@@ -11,7 +11,7 @@ import ca.jrvs.apps.trading.model.domain.Trader;
 import ca.jrvs.apps.trading.model.view.SecurityRow;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import ca.jrvs.apps.trading.model.view.TraderAccountView
+import ca.jrvs.apps.trading.model.view.TraderAccountView;
 
 import javax.transaction.Transactional;
 import java.util.ArrayList;
@@ -66,7 +66,7 @@ public class DashboardService {
             currentId = position.getTicker();
             sRow.setPosition(position);
             sRow.setTicker(currentId);
-            sRow.setQuote(quoteDao.findById(currentId));
+            sRow.setQuote(quoteDao.findById(currentId).get());
             securityRows.add(sRow);
         }
         portfolioView.setSecurityRows(securityRows);

@@ -55,8 +55,7 @@ public class AccountDao extends JdbcCrudDao<Account,Integer>{
 
     @Override
     protected int updateOne(Account entity) {
-        String updateSql = "UPDATE ticker SET last_price=?, bid_price=?,"
-                + "bid_size=?, ask_price=?,ask_size=? WHERE ticker=?";
+        String updateSql = "UPDATE ticker SET amount=? WHERE ticker=?";
         return getJdbcTemplate().update(updateSql,makeUpdateValues(entity));
     }
 
